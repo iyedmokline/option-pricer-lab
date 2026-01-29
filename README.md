@@ -1,59 +1,47 @@
-# 💱 Quant-FX Lab
+# 💱 Option Pricer & Hedging Simulator
 
-> **Research-driven FX option pricing, volatility calibration, and hedging simulation framework**  
-_Currently under active development_
-
----
-
-## 🚀 Overview
-Developing a research-driven framework for FX option pricing, volatility calibration, and hedging simulation.  
-The project integrates classical models (**Black-Scholes**, **Binomial Trees**) with advanced methods (**GARCH**, **Heston**) and an **interactive Streamlit dashboard** for risk analysis.  
+C++ project to **price European options** under the **Black–Scholes model** and to **simulate delta-hedging** (self-financing replication) over discrete rebalancing dates.  
+Includes **closed-form pricing**, **Monte Carlo pricing**, and a **hedging simulator** to study replication error.
 
 ---
 
-## 🛠️ Technologies (Planned)
-- Python 3.10+
-- NumPy · Pandas · SciPy  
-- ARCH (GARCH)  
-- QuantLib  
-- Streamlit  
-- Plotly  
+## ✨ Features
+
+- **Black–Scholes model** (risk-neutral dynamics)
+- **European Call/Put pricing**
+  - Closed-form Black–Scholes formula
+  - Monte Carlo estimator
+- **Greeks (Delta)** used for hedging
+- **Delta-hedging simulator**
+  - Discrete rebalancing (e.g., weekly steps)
+  - Tracks portfolio value vs. option payoff
+  - Reports replication / hedging error
+- Clean OOP structure (separation of model / option / MC / hedging)
 
 ---
 
-## 📂 Planned Structure
+## 📁 Project Structure
 
-quant-fx-lab/  
-├── src/ # Core models & utilities  
-├── notebooks/ # Research & experiments  
-├── data/ # Sample FX & volatility data  
-├── tests/ # Unit tests  
-└── dashboard/ # Streamlit app  
-
----
-
-## 🧩 Features (Planned)
-- FX option pricing (Black-Scholes, Binomial Trees)  
-- Volatility calibration (Implied Vol, GARCH, Heston)  
-- Hedging simulation with P&L tracking  
-- Interactive risk dashboard (Streamlit)  
-- Monte Carlo pricing (coming soon)  
-- Stochastic Local Volatility (future)  
+Typical files:
+- `main.cpp` — entry point, runs pricing + simulation demos
+- `BlackScholesModel.h/.cpp` — model parameters + BS pricing / delta
+- `Option.h/.cpp` — option definition (K, T, Call/Put)
+- `MonteCarlo.h/.cpp` — Monte Carlo pricer
+- `HedgingSimulator.h/.cpp` — delta-hedging replication simulator
 
 ---
 
-## 🔗 Resources
-- [QuantLib Documentation](https://www.quantlib.org/docs.shtml)
-- [ARCH Package](https://arch.readthedocs.io)
-- [Heston Model Paper](https://www.researchgate.net/publication/2408621_A_Closed-Form_Solution_for_Options_with_Stochastic_Volatility_with_Applications_to_Bond_and_Currency_Options)
+## ✅ Requirements
+
+- A C++ compiler supporting C++11+ (g++, clang++)
+- (Windows) PowerShell / (Linux/macOS) terminal
 
 ---
 
-## 📌 Status
-**In Progress**: Initial project setup & core pricing models.  
-Future commits will include volatility calibration, hedging logic, and dashboard integration.
+## ⚙️ Build & Run
 
----
+### Linux / macOS
+```bash
+g++ -std=c++11 main.cpp BlackScholesModel.cpp Option.cpp MonteCarlo.cpp HedgingSimulator.cpp -o pricer
+./pricer
 
-## 📜 License
-This project is licensed under the [MIT License](./LICENSE).
